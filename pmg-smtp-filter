@@ -23,7 +23,7 @@ use Xdgmime;
 use PVE::SafeSyslog;
 use PVE::ProcFSTools;
 use PVE::INotify;
-# Code added to log subject - start
+# Code added to log subject - start tracking center display subject
 use PVE::Tools;
 # Code added to log subject  - end
 
@@ -683,7 +683,7 @@ sub handle_smtp {
         $msginfo->{max_aid} = $max_aid;
 
         $self->log (3, "$queue->{logid}: new mail message-id=%s", $queue->{msgid});
-# Code added to log subject - start
+# Code added to log subject - start tracking center display subject
         $self->log (3, "$queue->{logid}: Subject: %s", encode('UTF-8',PMG::Utils::decode_rfc1522(PVE::Tools::trim($entity->head->get('subject')))) || 'No Subject');
         my @fromarray = split('\s*,\s*', PMG::Utils::decode_rfc1522($entity->head->get('from')) || $msginfo->{sender});
         $self->log (3, "$queue->{logid}: From: %s", PMG::Utils::decode_rfc1522(PVE::Tools::trim($fromarray[0])) );
